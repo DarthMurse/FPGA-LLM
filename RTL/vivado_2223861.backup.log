@@ -1,0 +1,265 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon Mar 30 23:10:29 2026
+# Process ID         : 2223861
+# Current directory  : /home/murse/Projects/FPGA-LLM/RTL
+# Command line       : vivado -mode batch -source scripts/synth_linear_engine.tcl -tclargs xc7a35tfgg484-2 128 16 8 8 16 /tmp/linear_engine_synth_partial/par8
+# Log file           : /home/murse/Projects/FPGA-LLM/RTL/vivado.log
+# Journal file       : /home/murse/Projects/FPGA-LLM/RTL/vivado.jou
+# Running On         : murse-System-Product-Name
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i5-12400F
+# CPU Frequency      : 3496.094 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16571 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 20866 MB
+# Available Virtual  : 7582 MB
+#-----------------------------------------------------------
+source scripts/synth_linear_engine.tcl
+# if { $argc != 7 } {
+#     puts "Usage: vivado -mode batch -source scripts/synth_linear_engine.tcl -tclargs <part> <cols> <rows> <par_cols> <in_w> <acc_w> <out_dir>"
+#     exit 1
+# }
+# set part_name [lindex $argv 0]
+# set cols [lindex $argv 1]
+# set rows [lindex $argv 2]
+# set par_cols [lindex $argv 3]
+# set in_w [lindex $argv 4]
+# set acc_w [lindex $argv 5]
+# set out_dir [lindex $argv 6]
+# file mkdir $out_dir
+# read_verilog rtl/linear_engine.v
+# synth_design \
+#     -top linear_engine \
+#     -part $part_name \
+#     -mode out_of_context \
+#     -generic "COLS=$cols ROWS=$rows PAR_COLS=$par_cols IN_W=$in_w ACC_W=$acc_w"
+Command: synth_design -top linear_engine -part xc7a35tfgg484-2 -mode out_of_context -generic {COLS=128 ROWS=16 PAR_COLS=8 IN_W=8 ACC_W=16}
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2224188
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1936.477 ; gain = 442.734 ; free physical = 805 ; free virtual = 3924
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'linear_engine' [/home/murse/Projects/FPGA-LLM/RTL/rtl/linear_engine.v:1]
+	Parameter COLS bound to: 128 - type: integer 
+	Parameter ROWS bound to: 16 - type: integer 
+	Parameter PAR_COLS bound to: 8 - type: integer 
+	Parameter IN_W bound to: 8 - type: integer 
+	Parameter ACC_W bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'linear_engine' (0#1) [/home/murse/Projects/FPGA-LLM/RTL/rtl/linear_engine.v:1]
+WARNING: [Synth 8-7129] Port vec_last_i in module linear_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port row_last_i in module linear_engine is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2063.445 ; gain = 569.703 ; free physical = 563 ; free virtual = 3685
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2078.289 ; gain = 584.547 ; free physical = 485 ; free virtual = 3606
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tfgg484-2
+INFO: [Device 21-403] Loading part xc7a35tfgg484-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2086.293 ; gain = 592.551 ; free physical = 477 ; free virtual = 3598
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_r_reg' in module 'linear_engine'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 ST_IDLE |                            00001 |                              000
+             ST_LOAD_VEC |                            10000 |                              001
+             ST_LOAD_ROW |                            01000 |                              010
+                 ST_CALC |                            00100 |                              011
+                  ST_OUT |                            00010 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_r_reg' using encoding 'one-hot' in module 'linear_engine'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2113.285 ; gain = 619.543 ; free physical = 351 ; free virtual = 3476
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   18 Bit       Adders := 7     
+	   2 Input   17 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 21    
+	  15 Input   16 Bit       Adders := 1     
++---Registers : 
+	              256 Bit    Registers := 16    
+	               16 Bit    Registers := 28    
+	                8 Bit    Registers := 128   
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 10    
+	   3 Input   16 Bit        Muxes := 8     
+	   5 Input   16 Bit        Muxes := 13    
+	   5 Input    1 Bit        Muxes := 168   
+	   2 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port vec_last_i in module linear_engine is either unconnected or has no load
+WARNING: [Synth 8-7129] Port row_last_i in module linear_engine is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:24 . Memory (MB): peak = 2330.652 ; gain = 836.910 ; free physical = 231 ; free virtual = 3284
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:25 . Memory (MB): peak = 2330.652 ; gain = 836.910 ; free physical = 233 ; free virtual = 3287
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2330.652 ; gain = 836.910 ; free physical = 355 ; free virtual = 3409
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 574 ; free virtual = 3573
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 574 ; free virtual = 3573
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 767 ; free virtual = 3765
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 1027 ; free virtual = 4025
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 2129 ; free virtual = 5127
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 2184 ; free virtual = 5182
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |   100|
+|2     |LUT1   |    12|
+|3     |LUT2   |   103|
+|4     |LUT3   |   315|
+|5     |LUT4   |   102|
+|6     |LUT5   |   104|
+|7     |LUT6   |  2032|
+|8     |MUXF7  |   678|
+|9     |MUXF8  |   326|
+|10    |FDCE   |  5606|
+|11    |FDPE   |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |  9379|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 2213 ; free virtual = 5212
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.559 ; gain = 848.816 ; free physical = 2217 ; free virtual = 5215
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 2342.566 ; gain = 848.816 ; free physical = 2217 ; free virtual = 5215
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2360.371 ; gain = 0.000 ; free physical = 2364 ; free virtual = 5363
+INFO: [Netlist 29-17] Analyzing 1104 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'linear_engine' is not ideal for floorplanning, since the cellview 'linear_engine' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2505.023 ; gain = 0.000 ; free physical = 2282 ; free virtual = 5281
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 82a77e19
+INFO: [Common 17-83] Releasing license: Synthesis
+16 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:30 . Memory (MB): peak = 2505.023 ; gain = 1014.254 ; free physical = 2282 ; free virtual = 5281
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1704.264; main = 1704.264; forked = 216.755
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3223.391; main = 2505.027; forked = 926.117
+# create_clock -period 10.000 [get_ports clk_i]
+# report_utilization -file [file join $out_dir utilization.rpt]
+# report_timing_summary -file [file join $out_dir timing_summary.rpt]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "clk_i" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+# write_checkpoint -force [file join $out_dir post_synth.dcp]
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00 . Memory (MB): peak = 2861.773 ; gain = 0.000 ; free physical = 3490 ; free virtual = 6488
+INFO: [Common 17-1381] The checkpoint '/tmp/linear_engine_synth_partial/par8/post_synth.dcp' has been generated.
+# close_project
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 30 23:11:10 2026...

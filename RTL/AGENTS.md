@@ -14,4 +14,5 @@ In this project, you will implement a ternary LLM Bitnet on a small FPGA board. 
 2. Vivado is installed on this computer. You can run relevant command in terminal.
 3. Please do the project in a top-down approach, i.e. let us figure out the top modules first, then define the interface for all the modules, then implement and test each module with unit test. When we finish designing a module, we should always test it to make sure it works as expected.
 4. During the process, we should discuss the design choices for each module, and finalize our design into comments and documents for better maintainence.
-
+5. The file structure, module interfaces and other format specifications are stored under the `docs/` folder. You should referance them when doing the project.
+6. The latest progress of the project is stored in `docs/progress.md`. You should read it when resuming the work.
